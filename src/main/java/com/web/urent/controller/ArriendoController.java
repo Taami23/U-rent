@@ -1,46 +1,46 @@
 package com.web.urent.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.web.urent.model.Arriendo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.web.urent.service.ArriendoService;
 
+
+@CrossOrigin(origins = "http://localhost:4200",maxAge =3600)
+@RestController
 @RequestMapping("/Arriendo")
-@Controller
 public class ArriendoController {
 
 	@Autowired
-	private ArriendoService arriendo;
-	
-	@RequestMapping("/")
-	public String index(Model model) {
-		model.addAttribute("list", arriendo.getAll());
-		return "indexArriendo";
+	private ArriendoService Arriendo;
+
+	@GetMapping
+	public List<Arriendo> listar(){
+		return Arriendo.getAll();
 	}
-	
-	@GetMapping("/save/{id}")
-	public String showsave(@PathVariable("id") int id, Model model) {
-		if(id!=0) {
-			model.addAttribute("Arriendo", arriendo.get(id));
-		}else {
-			model.addAttribute("Arriendo", new Arriendo());
-		}
-		return "saveArriendo";		
+
+	@PostMapping
+	public Arriendo agregar(@RequestBody Arriendo i){
+		return Arriendo.save(i);
 	}
-	@PostMapping("/save")
-	public String save(Model model, Arriendo admin) {
-		arriendo.save(admin);
-		return "redirect:/Arriendo/";
+
+	@GetMapping(path = {"/{id}"})
+	public Optional<Arriendo> listarId(@PathVariable(value = "id") int id){
+		return  Arriendo.get(id);
 	}
-	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable int id, Model model) {
-		arriendo.delete(id);
-		return "redirect:/Arriendo/";
+
+	@PutMapping(path = {"/{id}"})
+	public Arriendo editar(@RequestBody Arriendo i, @PathVariable(value = "id") int id){
+		i.setIdArriendo(id);
+		return Arriendo.save(i);
+	}
+
+	@DeleteMapping(path = {"/{id}"})
+	public Arriendo delete(@PathVariable(value = "id") int id){
+		return Arriendo.delete(id);
 	}
 }
