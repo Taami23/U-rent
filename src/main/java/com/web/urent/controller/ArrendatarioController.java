@@ -59,6 +59,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import web.urent.model.Arrendatario;
 import web.urent.service.ArrendatarioService;
 
+
 @RequestMapping("/Arrendatario")
 @Controller
 public class ArrendatarioController {
