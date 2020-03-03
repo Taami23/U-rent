@@ -1,6 +1,5 @@
 package com.web.urent.model;
 
-
 import javax.persistence.*;
 
 @Entity

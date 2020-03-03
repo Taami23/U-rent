@@ -38,5 +38,4 @@ public class ArrendadorServiceImpl implements ArrendadorService{
 		arrendadorRepositorio.save(arrendador);
 		return arrendador;
 	}
-
 }
