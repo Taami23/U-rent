@@ -1,3 +1,4 @@
+
 package com.web.urent.service;
 
 import com.web.urent.model.Inmueble;
@@ -15,3 +16,4 @@ public interface InmuebleService {
 	
 	public Inmueble delete(int id);
 }
+
