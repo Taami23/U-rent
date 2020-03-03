@@ -1,46 +1,46 @@
 package com.web.urent.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.web.urent.model.Sede;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.web.urent.service.SedeService;
 
+
+@CrossOrigin(origins = "http://localhost:4200",maxAge =3600)
+@RestController
 @RequestMapping("/Sede")
-@Controller
 public class SedeController {
 
 	@Autowired
-	private SedeService sede;
-	
-	@RequestMapping("/")
-	public String index(Model model) {
-		model.addAttribute("list", sede.getAll());
-		return "indexSede";
+	private SedeService Sede;
+
+	@GetMapping
+	public List<Sede> listar(){
+		return Sede.getAll();
 	}
-	
-	@GetMapping("/save/{id}")
-	public String showsave(@PathVariable("id") int id, Model model) {
-		if(id!=0) {
-			model.addAttribute("Sede", sede.get(id));
-		}else {
-			model.addAttribute("Sede", new Sede());
-		}	
-		return "/saveSede";
+
+	@PostMapping
+	public Sede agregar(@RequestBody Sede i){
+		return Sede.save(i);
 	}
-	@PostMapping("/Sede")
-	public String save(Model model, Sede admin) {
-		sede.save(admin);
-		return "redirect:/Sede/";
+
+	@GetMapping(path = {"/{id}"})
+	public Optional<Sede> listarId(@PathVariable(value = "id") int id){
+		return  Sede.get(id);
 	}
-	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable int id, Model model) {
-		sede.delete(id);
-		return "redirect:/Sede/";
+
+	@PutMapping(path = {"/{id}"})
+	public Sede editar(@RequestBody Sede i, @PathVariable(value = "id") int id){
+		i.setIdSede(id);
+		return Sede.save(i);
+	}
+
+	@DeleteMapping(path = {"/{id}"})
+	public Sede delete(@PathVariable(value = "id") int id){
+		return Sede.delete(id);
 	}
 }

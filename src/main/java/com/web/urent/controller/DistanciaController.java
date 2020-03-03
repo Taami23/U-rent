@@ -1,46 +1,46 @@
 package com.web.urent.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.web.urent.model.Distancia;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.web.urent.service.DistanciaService;
 
+
+@CrossOrigin(origins = "http://localhost:4200",maxAge =3600)
+@RestController
 @RequestMapping("/Distancia")
-@Controller
 public class DistanciaController {
 
 	@Autowired
-	private DistanciaService distancia;
-	
-	@RequestMapping("/")
-	public String index(Model model) {
-		model.addAttribute("list", distancia.getAll());
-		return "indexDistancia";
+	private DistanciaService Distancia;
+
+	@GetMapping
+	public List<Distancia> listar(){
+		return Distancia.getAll();
 	}
-	
-	@GetMapping("/save/{id}")
-	public String showsave(@PathVariable("id") int id, Model model) {
-		if(id!=0) {
-			model.addAttribute("Distancia", distancia.get(id));
-		}else {
-			model.addAttribute("Distancia", new Distancia());
-		}
-		return "saveDistancia";		
+
+	@PostMapping
+	public Distancia agregar(@RequestBody Distancia i){
+		return Distancia.save(i);
 	}
-	@PostMapping("/agregar")
-	public String save(Model model, Distancia admin) {
-		distancia.save(admin);
-		return "redirect:/Distancia/";
+
+	@GetMapping(path = {"/{id}"})
+	public Optional<Distancia> listarId(@PathVariable(value = "id") int id){
+		return  Distancia.get(id);
 	}
-	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable int id, Model model) {
-		distancia.delete(id);
-		return "redirect:/Distancia/";
+
+	@PutMapping(path = {"/{id}"})
+	public Distancia editar(@RequestBody Distancia i, @PathVariable(value = "id") int id){
+		i.setIdDistancia(id);
+		return Distancia.save(i);
+	}
+
+	@DeleteMapping(path = {"/{id}"})
+	public Distancia delete(@PathVariable(value = "id") int id){
+		return Distancia.delete(id);
 	}
 }

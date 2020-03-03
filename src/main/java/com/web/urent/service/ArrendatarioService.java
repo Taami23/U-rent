@@ -4,15 +4,15 @@ package com.web.urent.service;
 import com.web.urent.model.Arrendatario;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ArrendatarioService {
 
-public List<Arrendatario> getAll();
+	public List<Arrendatario> getAll();
 	
-	public void save(Arrendatario arrendatario);
+	public Arrendatario save(Arrendatario Arrendatario);
 	
-	public Arrendatario get(int id);
+	public Optional<Arrendatario> get(int id);
 	
-	public void delete(int id);
-	
+	public Arrendatario delete(int id);
 }

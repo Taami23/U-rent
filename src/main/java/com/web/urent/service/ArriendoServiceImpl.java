@@ -1,6 +1,7 @@
 package com.web.urent.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.web.urent.model.Arriendo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,29 +13,27 @@ import com.web.urent.repository.ArriendoRepository;
 public class ArriendoServiceImpl implements ArriendoService {
 
 	@Autowired
-	private ArriendoRepository arriendoRepositorio;
+	private ArriendoRepository ArriendoRepositorio;
+
 	@Override
 	public List<Arriendo> getAll() {
-		return arriendoRepositorio.findAll();
+		return ArriendoRepositorio.listar();
 	}
 
 	@Override
-	public void save(Arriendo arriendo) {
-		arriendoRepositorio.save(arriendo);
+	public Arriendo save(Arriendo Arriendo) { return ArriendoRepositorio.save(Arriendo); }
 
+	@Override
+	public Optional<Arriendo> get(int id) {
+		return ArriendoRepositorio.findById(id);
 	}
 
 	@Override
-	public Arriendo get(int id) {
-		return arriendoRepositorio.getOne(id);
-	}
-
-	@Override
-	public void delete(int id) {
-		Arriendo arri= arriendoRepositorio.getOne(id);
-		arri.setEstado((0));
-		arriendoRepositorio.save(arri);
-
+	public Arriendo delete(int id) {
+		Optional<Arriendo> op = ArriendoRepositorio.findById(id);
+		Arriendo inm = op.get();
+		inm.setEstado(0);
+		ArriendoRepositorio.save(inm);
+		return inm;
 	}
 }
-

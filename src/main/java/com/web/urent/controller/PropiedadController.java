@@ -1,47 +1,46 @@
 package com.web.urent.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.web.urent.model.Propiedad;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.web.urent.service.PropiedadService;
 
 
+@CrossOrigin(origins = "http://localhost:4200",maxAge =3600)
+@RestController
 @RequestMapping("/Propiedad")
-@Controller
 public class PropiedadController {
 
 	@Autowired
-	private PropiedadService propiedad;
-	
-	@RequestMapping("/")
-	public String index(Model model) {
-		model.addAttribute("list", propiedad.getAll());
-		return "indexPropiedad";
+	private PropiedadService Propiedad;
+
+	@GetMapping
+	public List<Propiedad> listar(){
+		return Propiedad.getAll();
 	}
-	
-	@GetMapping("/save/{id}")
-	public String showsave(@PathVariable("id") int id, Model model) {
-		if(id!=0) {
-			model.addAttribute("Propiedad", propiedad.get(id));
-		}else {
-			model.addAttribute("Propiedad", new Propiedad());
-		}
-		return "savePropiedad";		
+
+	@PostMapping
+	public Propiedad agregar(@RequestBody Propiedad i){
+		return Propiedad.save(i);
 	}
-	@PostMapping("/save")
-	public String save(Model model, Propiedad admin) {
-		propiedad.save(admin);
-		return "redirect:/Propiedad/";
+
+	@GetMapping(path = {"/{id}"})
+	public Optional<Propiedad> listarId(@PathVariable(value = "id") int id){
+		return  Propiedad.get(id);
 	}
-	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable int id, Model model) {
-		propiedad.delete(id);
-		return "redirect:/Propiedad/";
+
+	@PutMapping(path = {"/{id}"})
+	public Propiedad editar(@RequestBody Propiedad i, @PathVariable(value = "id") int id){
+		i.setId_Propiedad(id);
+		return Propiedad.save(i);
+	}
+
+	@DeleteMapping(path = {"/{id}"})
+	public Propiedad delete(@PathVariable(value = "id") int id){
+		return Propiedad.delete(id);
 	}
 }

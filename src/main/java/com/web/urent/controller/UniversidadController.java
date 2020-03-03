@@ -1,46 +1,46 @@
 package com.web.urent.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.web.urent.model.Universidad;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.web.urent.service.UniversidadService;
 
 
+@CrossOrigin(origins = "http://localhost:4200",maxAge =3600)
+@RestController
 @RequestMapping("/Universidad")
-@Controller
 public class UniversidadController {
+
 	@Autowired
-	private UniversidadService universidad;
-	
-	@RequestMapping("/")
-	public String index(Model model) {
-		model.addAttribute("list", universidad.getAll());
-		return "indexUniversidad";
+	private UniversidadService Universidad;
+
+	@GetMapping
+	public List<Universidad> listar(){
+		return Universidad.getAll();
 	}
-	
-	@GetMapping("/save/{id}")
-	public String showsave(@PathVariable("id") int id, Model model) {
-		if(id!=0) {
-			model.addAttribute("Universidad", universidad.get(id));
-		}else {
-			model.addAttribute("Universidad", new Universidad());
-		}
-		return "saveUniversidad";		
+
+	@PostMapping
+	public Universidad agregar(@RequestBody Universidad i){
+		return Universidad.save(i);
 	}
-	@PostMapping("/save")
-	public String save(Model model, Universidad admin) {
-		universidad.save(admin);
-		return "redirect:/Universidad/";
+
+	@GetMapping(path = {"/{id}"})
+	public Optional<Universidad> listarId(@PathVariable(value = "id") int id){
+		return  Universidad.get(id);
 	}
-	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable int id, Model model) {
-		universidad.delete(id);
-		return "redirect:/Universidad/";
+
+	@PutMapping(path = {"/{id}"})
+	public Universidad editar(@RequestBody Universidad i, @PathVariable(value = "id") int id){
+		i.setIdUniversidad(id);
+		return Universidad.save(i);
+	}
+
+	@DeleteMapping(path = {"/{id}"})
+	public Universidad delete(@PathVariable(value = "id") int id){
+		return Universidad.delete(id);
 	}
 }

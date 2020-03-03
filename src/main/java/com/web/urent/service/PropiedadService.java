@@ -3,15 +3,15 @@ package com.web.urent.service;
 import com.web.urent.model.Propiedad;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PropiedadService {
 
 	public List<Propiedad> getAll();
 	
-	public void save(Propiedad propiedades);
+	public Propiedad save(Propiedad Propiedad);
 	
-	public Propiedad get(int id);
+	public Optional<Propiedad> get(int id);
 	
-	public void delete(int id);
-
+	public Propiedad delete(int id);
 }

@@ -1,46 +1,47 @@
 package com.web.urent.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.web.urent.model.Arrendatario;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.web.urent.service.ArrendatarioService;
 
+@CrossOrigin(origins = "http://localhost:4200",maxAge =3600)
+@RestController
 @RequestMapping("/Arrendatario")
-@Controller
 public class ArrendatarioController {
 
+	
 	@Autowired
-	private ArrendatarioService arrendatario;
-	
-	@RequestMapping("/")
-	public String index(Model model) {
-		model.addAttribute("list", arrendatario.getAll());
-		return "indexArrendatario";
+	private ArrendatarioService Arrendatario;
+
+	@GetMapping
+	public List<Arrendatario> listar(){
+		return Arrendatario.getAll();
+	}
+
+	@PostMapping
+	public Arrendatario agregar(@RequestBody Arrendatario i){
+		return Arrendatario.save(i);
+	}
+
+	@GetMapping(path = {"/{id}"})
+	public Optional<Arrendatario> listarId(@PathVariable(value = "id") int id){
+		return  Arrendatario.get(id);
+	}
+
+	@PutMapping(path = {"/{id}"})
+	public Arrendatario editar(@RequestBody Arrendatario i, @PathVariable(value = "id") int id){
+		i.setId_Arrendatario(id);
+		return Arrendatario.save(i);
+	}
+
+	@DeleteMapping(path = {"/{id}"})
+	public Arrendatario delete(@PathVariable(value = "id") int id){
+		return Arrendatario.delete(id);
 	}
 	
-	@GetMapping("/save/{id}")
-	public String showsave(@PathVariable("id") int id, Model model) {
-		if(id!=0) {
-			model.addAttribute("Arrendatario", arrendatario.get(id));
-		}else {
-			model.addAttribute("Arrendatario", new Arrendatario());
-		}
-		return "saveArrendatario";		
-	}
-	@PostMapping("/save")
-	public String save(Model model, Arrendatario arren) {
-		arrendatario.save(arren);
-		return "redirect:/Arrendatario/";
-	}
-	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable int id, Model model) {
-		arrendatario.delete(id);
-		return "redirect:/Arrendatario/";
-	}
 }

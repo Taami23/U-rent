@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.web.urent.service.InmuebleService;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
 
 @CrossOrigin(origins = "http://localhost:4200",maxAge =3600)
 @RestController
