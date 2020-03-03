@@ -1,17 +1,19 @@
+
 package com.web.urent.service;
 
 import com.web.urent.model.Universidad;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UniversidadService {
-	
 
 	public List<Universidad> getAll();
 	
-	public void save(Universidad universidad);
+	public Universidad save(Universidad Universidad);
 	
-	public Universidad get(int id);
+	public Optional<Universidad> get(int id);
 	
-	public void delete(int id);
+	public Universidad delete(int id);
 }
+

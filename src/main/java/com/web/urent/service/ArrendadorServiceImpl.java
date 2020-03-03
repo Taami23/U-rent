@@ -7,35 +7,33 @@ import com.web.urent.model.Arrendador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.web.urent.repository.ArrendadorRepository;
 
 @Service
-public class ArrendadorServiceImpl implements ArrendadorService{
+public class ArrendadorServiceImpl implements ArrendadorService {
 
 	@Autowired
-	private ArrendadorRepository arrendadorRepositorio;
+	private ArrendadorRepository ArrendadorRepositorio;
+
 	@Override
 	public List<Arrendador> getAll() {
-		return arrendadorRepositorio.listar();
+		return ArrendadorRepositorio.listar();
 	}
 
 	@Override
-	public Arrendador save(Arrendador arrendador) {
-		return arrendadorRepositorio.save(arrendador);
-	}
+	public Arrendador save(Arrendador Arrendador) { return ArrendadorRepositorio.save(Arrendador); }
 
 	@Override
 	public Optional<Arrendador> get(int id) {
-		return arrendadorRepositorio.findById(id);
+		return ArrendadorRepositorio.findById(id);
 	}
 
 	@Override
 	public Arrendador delete(int id) {
-		Optional<Arrendador> a = arrendadorRepositorio.findById(id);
-		Arrendador arrendador = a.get();
-		arrendador.setEstado(0);
-		arrendadorRepositorio.save(arrendador);
-		return arrendador;
+		Optional<Arrendador> op = ArrendadorRepositorio.findById(id);
+		Arrendador inm = op.get();
+		inm.setEstado(0);
+		ArrendadorRepositorio.save(inm);
+		return inm;
 	}
 }

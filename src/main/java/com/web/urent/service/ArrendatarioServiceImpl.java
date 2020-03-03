@@ -1,40 +1,39 @@
-
 package com.web.urent.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.web.urent.model.Arrendatario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.urent.repository.ArrendatarioRepository;
+
 @Service
-public class ArrendatarioServiceImpl implements ArrendatarioService{
+public class ArrendatarioServiceImpl implements ArrendatarioService {
 
 	@Autowired
-	private ArrendatarioRepository arrendatarioRepositorio;
-	
+	private ArrendatarioRepository ArrendatarioRepositorio;
+
 	@Override
 	public List<Arrendatario> getAll() {
-		return arrendatarioRepositorio.findAll();
+		return ArrendatarioRepositorio.listar();
 	}
 
 	@Override
-	public void save(Arrendatario arrendatario) {
-		arrendatarioRepositorio.save(arrendatario);
+	public Arrendatario save(Arrendatario Arrendatario) { return ArrendatarioRepositorio.save(Arrendatario); }
+
+	@Override
+	public Optional<Arrendatario> get(int id) {
+		return ArrendatarioRepositorio.findById(id);
 	}
 
 	@Override
-	public Arrendatario get(int id) {
-		return arrendatarioRepositorio.getOne(id);
+	public Arrendatario delete(int id) {
+		Optional<Arrendatario> op = ArrendatarioRepositorio.findById(id);
+		Arrendatario inm = op.get();
+		inm.setEstado(0);
+		ArrendatarioRepositorio.save(inm);
+		return inm;
 	}
-
-	@Override
-	public void delete(int id) {
-		Arrendatario arren= arrendatarioRepositorio.getOne(id);
-		arren.setEstado((byte)(0));
-		arrendatarioRepositorio.save(arren);
-		
-	}
-
 }

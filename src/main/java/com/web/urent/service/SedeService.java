@@ -4,14 +4,16 @@ package com.web.urent.service;
 import com.web.urent.model.Sede;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SedeService {
 
 	public List<Sede> getAll();
 	
-	public void save(Sede sede);
+	public Sede save(Sede Sede);
 	
-	public Sede get(int id);
+	public Optional<Sede> get(int id);
 	
-	public void delete(int id);
+	public Sede delete(int id);
 }
+
