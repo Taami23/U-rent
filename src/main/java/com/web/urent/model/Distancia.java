@@ -5,18 +5,18 @@ import javax.persistence.*;
 @Entity
 @Table(name = "distancias")
 public class Distancia {
-    private Integer idDistancia;
+    private int idDistancia;
     private Inmueble idInmueble;
     private Sede idSede;
-    private Integer kilometros;
-    private Integer estado;
+    private int kilometros;
+    private int estado;
 
     @Id
-    public Integer getIdDistancia() {
+    public int getIdDistancia() {
         return idDistancia;
     }
 
-    public void setIdDistancia(Integer idDistancia) {
+    public void setIdDistancia(int idDistancia) {
         this.idDistancia = idDistancia;
     }
 
@@ -41,20 +41,20 @@ public class Distancia {
     }
 
     @Column(name = "kilometros")
-    public Integer getKilometros() {
+    public int getKilometros() {
         return kilometros;
     }
 
-    public void setKilometros(Integer kilometros) {
+    public void setKilometros(int kilometros) {
         this.kilometros = kilometros;
     }
 
     @Column(name = "estado")
-    public Integer getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(Integer estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 }

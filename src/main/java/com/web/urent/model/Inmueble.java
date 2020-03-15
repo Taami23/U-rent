@@ -6,101 +6,100 @@ import javax.persistence.*;
 @Table(name = "inmueble")
 public class Inmueble {
 
-    private Integer id_Inmueble;
-    private Integer nroHabitaciones;
-    private Integer nroBanos;
-    private Integer wifi;
-    private Integer luz;
-    private Integer agua;
-    private Integer gas;
-    private Integer cocina;
-    private Integer precioMensual;
+    private int id_Inmueble;
+    private int nroHabitaciones;
+    private int nroBanos;
+    private int wifi;
+    private int luz;
+    private int agua;
+    private int gas;
+    private int cocina;
+    private int precioMensual;
     private String descripcion;
-    private Integer estacionamiento;
-    private Integer disponibilidad;
+    private int estacionamiento;
+    private int disponibilidad;
     private String direccion;
-    private Propiedad id_Propiedad;
-    private Integer estado;
+    private int estado;
 
 
     @Id
     // @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Integer getIdInmueble() {
+    public int getIdInmueble() {
         return id_Inmueble;
     }
 
-    public void setIdInmueble(Integer idInmueble) {
+    public void setIdInmueble(int idInmueble) {
         this.id_Inmueble = idInmueble;
     }
 
     @Column(name="nro_Habitaciones")
-    public Integer getNroHabitaciones() {
+    public int getNroHabitaciones() {
         return nroHabitaciones;
     }
 
-    public void setNroHabitaciones(Integer nroHabitaciones) {
+    public void setNroHabitaciones(int nroHabitaciones) {
         this.nroHabitaciones = nroHabitaciones;
     }
     @Column(name="nro_Banos")
-    public Integer getNroBanos() {
+    public int getNroBanos() {
         return nroBanos;
     }
 
-    public void setNroBanos(Integer nroBanos) {
+    public void setNroBanos(int nroBanos) {
         this.nroBanos = nroBanos;
     }
 
     @Column(name="wifi")
-    public Integer getWifi() {
+    public int getWifi() {
         return wifi;
     }
 
-    public void setWifi(Integer wifi) {
+    public void setWifi(int wifi) {
         this.wifi = wifi;
     }
 
     @Column(name="luz")
-    public Integer getLuz() {
+    public int getLuz() {
         return luz;
     }
 
-    public void setLuz(Integer luz) {
+    public void setLuz(int luz) {
         this.luz = luz;
     }
 
     @Column(name="agua")
-    public Integer getAgua() {
+    public int getAgua() {
         return agua;
     }
 
-    public void setAgua(Integer agua) {
+    public void setAgua(int agua) {
         this.agua = agua;
     }
 
     @Column(name="gas")
-    public Integer getGas() {
+    public int getGas() {
         return gas;
     }
 
-    public void setGas(Integer gas) {
+    public void setGas(int gas) {
         this.gas = gas;
     }
 
     @Column(name="cocina")
-    public Integer getCocina() {
+    public int getCocina() {
         return cocina;
     }
 
-    public void setCocina(Integer cocina) {
+    public void setCocina(int cocina) {
         this.cocina = cocina;
     }
 
     @Column(name="precio_Mensual")
-    public Integer getPrecioMensual() {
+    public int getPrecioMensual() {
         return precioMensual;
     }
 
-    public void setPrecioMensual(Integer precioMensual) {
+    public void setPrecioMensual(int precioMensual) {
         this.precioMensual = precioMensual;
     }
 
@@ -114,20 +113,20 @@ public class Inmueble {
     }
 
     @Column(name="estacionamiento")
-    public Integer getEstacionamiento() {
+    public int getEstacionamiento() {
         return estacionamiento;
     }
 
-    public void setEstacionamiento(Integer estacionamiento) {
+    public void setEstacionamiento(int estacionamiento) {
         this.estacionamiento = estacionamiento;
     }
 
     @Column(name="disponibilidad")
-    public Integer getDisponibilidad() {
+    public int getDisponibilidad() {
         return disponibilidad;
     }
 
-    public void setDisponibilidad(Integer disponibilidad) {
+    public void setDisponibilidad(int disponibilidad) {
         this.disponibilidad = disponibilidad;
     }
 
@@ -140,22 +139,12 @@ public class Inmueble {
         this.direccion = direccion;
     }
 
-    @ManyToOne
-    @JoinColumn(name="id_Propiedad")
-    public Propiedad getIdPropiedad() {
-        return id_Propiedad;
-    }
-
-    public void setIdPropiedad(Propiedad idPropiedad) {
-        this.id_Propiedad = idPropiedad;
-    }
-
     @Column(name="estado")
-    public Integer getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(Integer estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 

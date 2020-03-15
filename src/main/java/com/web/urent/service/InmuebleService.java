@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface InmuebleService {
 
+	public List<Inmueble> getAllArrendador(int id);
+
 	public List<Inmueble> getAll();
 	
 	public Inmueble save(Inmueble inmueble);

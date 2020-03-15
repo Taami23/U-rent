@@ -5,18 +5,18 @@ import javax.persistence.*;
 @Entity
 @Table(name = "universidad")
 public class Universidad {
-    private Integer idUniversidad;
+    private int id_Universidad;
     private String nombre;
-    private Integer estado;
+    private int estado;
 
     @Id
-    //@GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "id_Universidad")
     public Integer getIdUniversidad() {
-        return idUniversidad;
+        return id_Universidad;
     }
 
     public void setIdUniversidad(Integer idUniversidad) {
-        this.idUniversidad = idUniversidad;
+        this.id_Universidad = idUniversidad;
     }
 
     @Column(name="nombre")

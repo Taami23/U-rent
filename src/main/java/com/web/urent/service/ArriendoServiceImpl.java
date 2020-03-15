@@ -16,6 +16,18 @@ public class ArriendoServiceImpl implements ArriendoService {
 	private ArriendoRepository ArriendoRepositorio;
 
 	@Override
+	public List<Arriendo> getAllArrendador(int id) {
+		System.out.println(id);
+		return ArriendoRepositorio.listarArrendador(id);
+	}
+
+	@Override
+	public List<Arriendo> getAllArrendatario(int id) {
+		System.out.println(id);
+		return ArriendoRepositorio.listarArrendatario(id);
+	}
+
+	@Override
 	public List<Arriendo> getAll() {
 		return ArriendoRepositorio.listar();
 	}

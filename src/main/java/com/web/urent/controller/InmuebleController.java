@@ -3,6 +3,7 @@ package com.web.urent.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.web.urent.model.Arriendo;
 import com.web.urent.model.Inmueble;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,10 @@ public class InmuebleController {
 	@GetMapping
 	public List<Inmueble> listar(){
 		return inmueble.getAll();
+	}
+
+	@GetMapping(path = {"/Arrendador/{id}"})
+	public List<Inmueble> listarArrendador(@PathVariable(value = "id") int id){return inmueble.getAllArrendador(id);
 	}
 
 	@PostMapping

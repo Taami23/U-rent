@@ -19,8 +19,15 @@ public class ArriendoController {
 	private ArriendoService Arriendo;
 
 	@GetMapping
-	public List<Arriendo> listar(){
-		return Arriendo.getAll();
+	public List<Arriendo> listar(){return Arriendo.getAll();
+	}
+
+	@GetMapping(path = {"/Arrendador/{id}"})
+	public List<Arriendo> listarArrendador(@PathVariable(value = "id") int id){return Arriendo.getAllArrendador(id);
+	}
+
+	@GetMapping(path = {"/Arrendatario/{id}"})
+	public List<Arriendo> listarArrendatario(@PathVariable(value = "id") int id){return Arriendo.getAllArrendatario(id);
 	}
 
 	@PostMapping

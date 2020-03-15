@@ -9,29 +9,29 @@ import java.util.Date;
 @Table(name = "arriendo")
 public class Arriendo {
 
-    private Integer idArriendo;
-    @JsonFormat(pattern="yyyy-MMM-dd")
+    private int idArriendo;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date fechaInicio;
-    @JsonFormat(pattern="yyyy-MMM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date fechaTermino;
     private Arrendador id_Arrendador;
     private Arrendatario id_Arrendatario;
     private Inmueble id_Inmueble;
-    private Integer estado;
+    private int estado;
 
     @Id
-    public Integer getIdArriendo() {
+    public int getIdArriendo() {
         return idArriendo;
     }
 
-    public void setIdArriendo(Integer idArriendo) {
+    public void setIdArriendo(int idArriendo) {
         this.idArriendo = idArriendo;
     }
 
     @Column(name = "fecha_Inicio")
     public Date getFechaInicio() {
         return fechaInicio;
-    }
+     }
 
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
@@ -78,11 +78,11 @@ public class Arriendo {
     }
 
     @Column(name = "estado")
-    public Integer getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(Integer estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 }

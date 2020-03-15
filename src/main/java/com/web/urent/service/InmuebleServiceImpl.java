@@ -16,6 +16,11 @@ public class InmuebleServiceImpl implements InmuebleService {
 	private InmuebleRepository inmuebleRepositorio;
 
 	@Override
+	public List<Inmueble> getAllArrendador(int id) {
+		return inmuebleRepositorio.listarArrendador(id);
+	}
+
+	@Override
 	public List<Inmueble> getAll() {
 		return inmuebleRepositorio.listar();
 	}

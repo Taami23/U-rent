@@ -5,19 +5,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "sede")
 public class Sede {
-    private Integer idSede;
+    private int idSede;
     private String nombre;
     private String direccion;
     private Universidad idUniversidad;
-    private Integer estado;
+    private int estado;
 
     @Id
     // @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Integer getIdSede() {
+    public int getIdSede() {
         return idSede;
     }
 
-    public void setIdSede(Integer idSede) {
+    public void setIdSede(int idSede) {
         this.idSede = idSede;
     }
 
@@ -50,11 +50,11 @@ public class Sede {
     }
 
     @Column(name="estado")
-    public Integer getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(Integer estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 }

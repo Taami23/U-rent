@@ -9,20 +9,21 @@ import java.util.Date;
 @Table(name = "propiedad")
 public class Propiedad {
 
-    private Integer id_Propiedad;
+    private int id_Propiedad;
     @JsonFormat(pattern="yyyy-MMM-dd")
     private Date fecha_Inicio;
     @JsonFormat(pattern="yyyy-MMM-dd")
     private Date fecha_Termino;
     private Arrendador id_Arrendador;
-    private Integer estado;
+    private int estado;
+    private Inmueble id_Inmueble;
 
     @Id
-    public Integer getId_Propiedad() {
+    public int getId_Propiedad() {
         return id_Propiedad;
     }
 
-    public void setId_Propiedad(Integer id_Propiedad) {
+    public void setId_Propiedad(int id_Propiedad) {
         this.id_Propiedad = id_Propiedad;
     }
 
@@ -55,11 +56,21 @@ public class Propiedad {
     }
 
     @Column(name = "estado")
-    public Integer getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(Integer estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="id_Inmueble")
+    public Inmueble getId_Inmueble() {
+        return id_Inmueble;
+    }
+
+    public void setId_Inmueble(Inmueble id_Inmueble) {
+        this.id_Inmueble = id_Inmueble;
     }
 }
