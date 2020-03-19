@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface ArriendoService {
 
+	public List<Arriendo> getAllArrendador(int id, String correo);
+
 	public List<Arriendo> getAllArrendador(int id);
 
 	public List<Arriendo> getAllArrendatario(int id);
