@@ -13,7 +13,9 @@ public interface ArriendoService {
 	public List<Arriendo> getAllArrendatario(int id);
 
 	public List<Arriendo> getAll();
-	
+
+	public List<Arriendo> getAllByInmueble(int id1, int id2);
+
 	public Arriendo save(Arriendo Arriendo);
 	
 	public Optional<Arriendo> get(int id);

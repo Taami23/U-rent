@@ -20,7 +20,7 @@ public class PropiedadServiceImpl implements PropiedadService {
 		return PropiedadRepositorio.listar();
 	}
 
-	@Override
+    @Override
 	public Propiedad save(Propiedad Propiedad) { return PropiedadRepositorio.save(Propiedad); }
 
 	@Override

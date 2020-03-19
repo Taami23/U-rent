@@ -33,6 +33,11 @@ public class ArriendoServiceImpl implements ArriendoService {
 	}
 
 	@Override
+	public List<Arriendo> getAllByInmueble(int id1, int id2) {
+		return ArriendoRepositorio.arriendoPorInmueble(id1,id2);
+	}
+
+	@Override
 	public Arriendo save(Arriendo Arriendo) { return ArriendoRepositorio.save(Arriendo); }
 
 	@Override

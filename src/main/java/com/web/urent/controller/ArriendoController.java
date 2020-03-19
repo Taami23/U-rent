@@ -30,6 +30,10 @@ public class ArriendoController {
 	public List<Arriendo> listarArrendatario(@PathVariable(value = "id") int id){return Arriendo.getAllArrendatario(id);
 	}
 
+	@GetMapping(path = {"/Inmueble/{id_inm}/{id_arr}"})
+	public List<Arriendo> listarArrendatario(@PathVariable(value = "id_inm") int id_inm, @PathVariable(value = "id_arr") int id){return Arriendo.getAllByInmueble(id_inm, id);
+	}
+
 	@PostMapping
 	public Arriendo agregar(@RequestBody Arriendo i){
 		return Arriendo.save(i);

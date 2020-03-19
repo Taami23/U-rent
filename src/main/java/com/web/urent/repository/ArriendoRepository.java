@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.web.urent.model.Arriendo;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
@@ -21,4 +21,7 @@ public interface ArriendoRepository extends JpaRepository<Arriendo, Integer> {
 
 	@Query(value = "select a from Arriendo a")
 	List<Arriendo> listar();
+
+	@Query("select a from Arriendo a where a.estado=1 and a.id_Inmueble.idInmueble=?1 and a.id_Arrendador.id_Arrendador =?2")
+	List<Arriendo> arriendoPorInmueble(int id1, int id2);
 }

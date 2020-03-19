@@ -10,10 +10,8 @@ import java.util.Date;
 public class Propiedad {
 
     private int id_Propiedad;
-    @JsonFormat(pattern="yyyy-MMM-dd")
-    private Date fecha_Inicio;
-    @JsonFormat(pattern="yyyy-MMM-dd")
-    private Date fecha_Termino;
+    private String fecha_Inicio;
+    private String fecha_Termino;
     private Arrendador id_Arrendador;
     private int estado;
     private Inmueble id_Inmueble;
@@ -28,20 +26,20 @@ public class Propiedad {
     }
 
     @Column(name = "fecha_Inicio")
-    public Date getFecha_Inicio() {
+    public String getFecha_Inicio() {
         return fecha_Inicio;
     }
 
-    public void setFecha_Inicio(Date fecha_Inicio) {
+    public void setFecha_Inicio(String fecha_Inicio) {
         this.fecha_Inicio = fecha_Inicio;
     }
 
     @Column(name = "fecha_Termino")
-    public Date getFecha_Termino() {
+    public String getFecha_Termino() {
         return fecha_Termino;
     }
 
-    public void setFecha_Termino(Date fecha_Termino) {
+    public void setFecha_Termino(String fecha_Termino) {
         this.fecha_Termino = fecha_Termino;
     }
 
